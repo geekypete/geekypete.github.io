@@ -1,78 +1,108 @@
-# Hydra
+# al-folio
 
-Marketing site template for Jekyll. Browse through a [live demo](https://proud-alligator.cloudvent.net/).
-Increase the web presence of your brand with this configurable theme.
+[![build status](https://travis-ci.org/alshedivat/al-folio.svg?branch=master)](https://travis-ci.org/alshedivat/al-folio)
+[![demo](https://img.shields.io/badge/theme-demo-brightgreen.svg)](https://alshedivat.github.io/al-folio/)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/alshedivat/al-folio/blob/master/LICENSE)
+[![gitter](https://badges.gitter.im/alshedivat/al-folio.svg)](https://gitter.im/alshedivat/al-folio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-![Hydra template screenshot](images/_screenshot.png)
+A simple and clean [Jekyll](https://jekyllrb.com/) theme for academics.
 
-Hydra was made by [CloudCannon](http://cloudcannon.com/), the Cloud CMS for Jekyll.
+[![Screenshot](assets/img/full-screenshot.png)](https://alshedivat.github.io/al-folio/)
 
-Find more templates, themes and step-by-step Jekyll tutorials at [CloudCannon Academy](https://learn.cloudcannon.com/).
+Originally, **al-folio** was based on the [\*folio theme](https://github.com/bogoli/-folio) (published by [Lia Bogoev](http://liabogoev.com) and under the MIT license).
+Since then, it got a full re-write of the styles and many additional cool features.
+The emphasis is on whitespace, transparency, and academic usage: [theme demo](https://alshedivat.github.io/al-folio/).
+
+## Getting started
+
+For more about how to use Jekyll, check out [this tutorial](https://www.taniarascia.com/make-a-static-website-with-jekyll/).
+Why Jekyll? Read this [blog post](https://karpathy.github.io/2014/07/01/switching-to-jekyll/)!
+
+### Installation
+
+Assuming you have [Ruby](https://www.ruby-lang.org/en/downloads/) and [Bundler](https://bundler.io/) installed on your system (*hint: for ease of managing ruby gems, consider using [rbenv](https://github.com/rbenv/rbenv)*), first fork the theme from `github.com:alshedivat/al-folio` to `github.com:<your-username>/<your-repo-name>` and do the following:
+
+```bash
+$ git clone git@github.com:<your-username>/<your-repo-name>.git
+$ cd <your-repo-name>
+$ bundle install
+$ bundle exec jekyll serve
+```
+
+Now, feel free to customize the theme however you like (don't forget to change the name!).
+After you are done, **commit** your final changes.
+Now, you can deploy your website to [GitHub Pages](https://pages.github.com/) by running the deploy script:
+
+```bash
+$ ./bin/deploy [--user]
+```
+By default, the script uses the `master` branch for the source code and deploys the webpage to `gh-pages`.
+The optional flag `--user` tells it to deploy to `master` and use `source` for the source code instead.
+Using `master` for deployment is a convention for [user and organization pages](https://help.github.com/articles/user-organization-and-project-pages/).
+
+**Note:** when deploying your user or organization page, make sure the `_config.yml` has `url` and `baseurl` fields as follows.
+
+```
+url: # should be empty
+baseurl:  # should be empty
+```
+
+### Usage
+
+Note that `_pages/about.md` is built to index.html in the published site. There is therefore no need to have a separate index page for the project. If an index page does exist in the root directory then this will prevent `_pages/about.md` from being added to the built site.
 
 ## Features
 
-* Contact form
-* Pre-built pages
-* Pre-styled components
-* Blog with pagination
-* Post category pages
-* Disqus comments for posts
-* Staff and author system
-* Configurable footer
-* Optimised for editing in [CloudCannon](http://cloudcannon.com/)
-* RSS/Atom feed
-* SEO tags
-* Google Analytics
+#### Ergonomic Publications
 
-## Setup
+Your publications page is generated automatically from your BibTex bibliography.
+Simply edit `_bibliography/papers.bib`.
+You can also add new `*.bib` files and customize the look of your publications however you like by editing `_pages/publications.md`.
 
-1. Add your site and author details in `_config.yml`.
-2. Add your Google Analytics and Disqus keys to `_config.yml`.
-3. Get a workflow going to see your site's output (with [CloudCannon](https://app.cloudcannon.com/) or Jekyll locally).
+Keep meta-information about your co-authors in `_data/coauthors.yml` and Jekyll will insert links to their webpages automatically.
 
-## Develop
+#### Collections
+This Jekyll theme implements collections to let you break up your work into categories.
+The example is divided into news and projects, but easily revamp this into apps, short stories, courses, or whatever your creative work is.
 
-Hydra was built with [Jekyll](http://jekyllrb.com/) version 3.3.1, but should support newer versions as well.
+> To do this, edit the collections in the `_config.yml` file, create a corresponding folder, and create a landing page for your collection, similar to `_pages/projects.md`.
 
-Install the dependencies with [Bundler](http://bundler.io/):
+Two different layouts are included: the blog layout, for a list of detailed descriptive list of entries, and the projects layout.
+The projects layout overlays a descriptive hoverover on a background image.
+If no image is provided, the square is auto-filled with the chosen theme color.
+Thumbnail sizing is not necessary, as the grid crops images perfectly.
 
-~~~bash
-$ bundle install
-~~~
+#### Theming
+Six beautiful theme colors have been selected to choose from.
+The default is purple, but quickly change it by editing `$theme-color` variable in the `_sass/variables.scss` file (line 72).
+Other color variables are listed there, as well.
 
-Run `jekyll` commands through Bundler to ensure you're using the right versions:
+#### Photos
+Photo formatting is made simple using rows of a 3-column system.
+Make photos 1/3, 2/3, or full width.
+Easily create beautiful grids within your blog posts and projects pages:
 
-~~~bash
-$ bundle exec jekyll serve
-~~~
+<p align="center">
+  <a href="https://alshedivat.github.io/al-folio/projects/1_project/">
+    <img src="assets/img/photos-screenshot.png" width="75%">
+  </a>
+</p>
 
-## Editing
+#### Code Highlighting
+This theme implements Jekyll's built in code syntax highlighting with Pygments.
+Just use the liquid tags `{% highlight python %}` and `{% endhighlight %}` to delineate your code:
 
-Hydra is already optimised for adding, updating and removing pages, staff, advice, company details and footer elements in CloudCannon.
+<p align="center">
+  <a href="https://alshedivat.github.io/al-folio/blog/2015/code/">
+    <img src="assets/img/code-screenshot.png" width="75%">
+  </a>
+</p>
 
-### Posts
+## Contributing
 
-* Add, update or remove a post in the *Posts* collection.
-* The **Staff Author** field links to members in the **Staff** collection.
-* Documentation pages are organised in the navigation by category, with URLs based on the path inside the `_docs` folder.
-* Change the defaults when new posts are created in `_posts/_defaults.md`.
+Feel free to contribute new features and theme improvements by sending a pull request.
+Style improvements and bug fixes are especially welcome.
 
-### Contact Form
+## License
 
-* Preconfigured to work with CloudCannon, but easily changed to another provider (e.g. [FormSpree](https://formspree.io/)).
-* Sends email to the address listed in company details.
-
-### Staff
-
-* Reused around the site to save multiple editing locations.
-* Add `excluded_in_search: true` to any documentation page's front matter to exclude that page in the search results.
-
-### Navigation
-
-* Exposed as a data file to give clients better access.
-* Set in the *Data* / *Navigation* section.
-
-### Footer
-
-* Exposed as a data file to give clients better access.
-* Set in the *Data* / *Footer* section.
+The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
